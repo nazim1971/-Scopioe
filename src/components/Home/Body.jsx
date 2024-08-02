@@ -33,7 +33,7 @@ const Body = () => {
         <div className="border w-full bg-[#EEF2F5]">
          <Nav/>
 
-        <div className="bg-white max-w-[1130px] min-h-[430px] md:h-[210px] p-5 my-4 md:m-6 rounded-[10px] grid md:grid-cols-2 gap-10">
+        <div className="bg-white max-w-[1130px] min-h-[430px]  md:min-h-[210px] p-5 my-4 md:m-6 rounded-[10px] grid md:grid-cols-2 gap-10">
 
         <div className="flex flex-col justify-between p-2 ">
             <h2 className="text-lg font-medium">
@@ -73,7 +73,7 @@ const Body = () => {
 
        <h2 className="font-medium text-lg ml-6">Featured Therapist</h2>
 
-       <div className="bg-white flex items-center justify-between h-[363px] px-4  m-6 rounded-[10px] ">
+       {/* <div className="bg-white flex items-center justify-between h-[363px] px-4  m-6 rounded-[10px] ">
         
        
          <Swiper
@@ -115,7 +115,7 @@ const Body = () => {
          </div>
          </SwiperSlide> ))}
       </Swiper>
-        </div>
+        </div> */}
 
         
        <div className="grid md:grid-cols-2">

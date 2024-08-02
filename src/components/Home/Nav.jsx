@@ -3,6 +3,13 @@ import useAuth from "../Hook/useAuth";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { useEffect, useRef, useState } from "react";
+import { AiOutlineAppstore } from "react-icons/ai";
+import { CiHeart, CiSettings } from "react-icons/ci";
+import { GrStatusInfo } from "react-icons/gr";
+import { HiMagnifyingGlass } from "react-icons/hi2";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { MdOutlinePeopleAlt } from "react-icons/md";
 
 const Nav = () => {
     const {user,logOut} = useAuth();
@@ -14,6 +21,31 @@ const Nav = () => {
         navigate('/')
       })
       .catch();}
+
+      const [isOpen, setIsOpen] = useState(false);
+      const sidebarRef = useRef();
+    
+      const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+      };
+    
+      const handleClickOutside = (event) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+          setIsOpen(false);
+        }
+      };
+    
+      useEffect(() => {
+        if (isOpen) {
+          document.addEventListener('mousedown', handleClickOutside);
+        } else {
+          document.removeEventListener('mousedown', handleClickOutside);
+        }
+    
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, [isOpen]);
     return (
         <div>
             <div className="h-[88px] hidden  md:flex justify-between px-6 border bg-white ">
@@ -42,14 +74,56 @@ const Nav = () => {
         </div> 
         {/* small device */}
 
-        <div className="h-[60px] bg-white flex justify-between items-center px-3 ">
+        <div className="h-[60px] md:hidden bg-white flex justify-between items-center px-3 ">
         <h1 className="text-[32px]  text-center text-[#4285F3] ">LOGO</h1>
         <div className="flex gap-2">
         <IoNotificationsOutline className="text-2xl  " />
-        <HiOutlineMenuAlt3 className="text-2xl  " />
+        <HiOutlineMenuAlt3 onClick={toggleSidebar} className="text-2xl  " />
 
         </div>
         </div>
+
+         <div
+       ref={sidebarRef}
+       className={`fixed top-0 right-0 z-50  bg-white  transition-transform transform ${
+         isOpen ? 'translate-x-0' : 'translate-x-full'
+       }`}
+       style={{ width: '250px' }}
+      >
+        {/* <button
+          className="px-4 py-2 bg-red-500 text-white m-4"
+          onClick={toggleSidebar}
+        >
+          Close
+        </button> */}
+
+        <div className=" py-20 bg-blue-500 pr-4 text-right ">
+          <div className="flex justify-end">
+          <img 
+                className="h-10 w-10 rounded-full   "
+                src={
+                  (user && user?.photoURL) ||
+                  "user.png"
+                }
+                alt=""
+              />
+          </div>
+               <p className="font-semibold text-white  gap-3" >{user?.displayName}</p>
+               <p> {user?.email} </p>
+          </div>
+
+        <div className="space-y-1 px-4">
+       <p className="flex items-center gap-3 text-[#5c635a]  py-3 "> <AiOutlineAppstore /> Home</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 "> <MdOutlinePeopleAlt /> New Listing</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 "> <HiMagnifyingGlass /> Search</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 "> <IoDocumentTextOutline /> About</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 "> <CiHeart /> Favorites</p>
+        <hr />
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 "> <GrStatusInfo /> Help Center</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 "> <CiSettings />  Setting
+        </p>
+       </div>
+      </div>
         </div>
     );
 };
