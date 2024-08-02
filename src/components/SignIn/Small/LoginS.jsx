@@ -51,7 +51,7 @@ const handleGoogleLogin = () => {
     return (
         <div>
               <div
-          className=" w-full md:hidden  bg-cover  bg-no-repeat  "
+          className=" w-full md:hidden h-screen bg-cover flex flex-col  bg-no-repeat  "
           style={{
             backgroundImage: "url(mLogin.png)",
           }}

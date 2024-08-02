@@ -2,6 +2,7 @@ import { FaAngleDown } from "react-icons/fa";
 import useAuth from "../Hook/useAuth";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 const Nav = () => {
     const {user,logOut} = useAuth();
@@ -15,7 +16,7 @@ const Nav = () => {
       .catch();}
     return (
         <div>
-            <div className="h-[88px] flex justify-between px-6 border bg-white ">
+            <div className="h-[88px] hidden  md:flex justify-between px-6 border bg-white ">
           
           <div className="flex gap-4 items-center ">
           <img 
@@ -39,6 +40,16 @@ const Nav = () => {
            </div>
            </div>
         </div> 
+        {/* small device */}
+
+        <div className="h-[60px] bg-white flex justify-between items-center px-3 ">
+        <h1 className="text-[32px]  text-center text-[#4285F3] ">LOGO</h1>
+        <div className="flex gap-2">
+        <IoNotificationsOutline className="text-2xl  " />
+        <HiOutlineMenuAlt3 className="text-2xl  " />
+
+        </div>
+        </div>
         </div>
     );
 };

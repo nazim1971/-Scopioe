@@ -7,7 +7,7 @@ import { MdOutlinePeopleAlt } from "react-icons/md";
 
 const Sidebar = () => {
   return (
-    <div className="h-screen">
+    <div className=" hidden md:block">
       
         
       <div className="w-[250px] h-full border ">

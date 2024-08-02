@@ -79,7 +79,7 @@ const RegisterS = () => {
         <div>
              {/* for small device */}
       <div
-          className=" w-full md:hidden h-screen bg-cover  bg-no-repeat  "
+          className=" w-full md:hidden h-screen flex flex-col bg-cover  bg-no-repeat  "
           style={{
             backgroundImage: "url(mLogin.png)",
           }}
@@ -90,7 +90,7 @@ const RegisterS = () => {
             <p className="text-white text-lg font-semibold">Fill in Your Information</p>
           </div>
 
-          <div className=" px-4 bg-white h-full  py-10  rounded-t-[40px] ">
+          <div className=" px-4  h-full bg-white  py-10  rounded-t-[40px] ">
          <h2 className="text-[28px] text-center font-semibold   ">Sign Up</h2>
 
           <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,0 +1,27 @@
+[
+    {
+      "name": "Alexander Cort",
+      "picture": "pic1.png",
+      "location": "123 Elm Street, New York",
+      "occupation": "Mobile & In-Studio"
+    },
+    {
+      "name": "Michael Smith",
+      "picture": "pic2.png",
+      "location": "456 Oak Avenue, Los Angeles",
+      "occupation": "Mobile & In-Studio"
+    },
+    {
+      "name": "David Martinez",
+      "picture": "pic3.png",
+      "location": "789 Maple Drive, NY",
+      "occupation": "Mobile & In-Studio"
+    },
+    {
+      "name": "Jennifer Lee",
+      "picture": "pic4.png",
+      "location": "Pine Street, San Fran",
+      "occupation": "Mobile & In-Studio"
+    }
+  ]
+  
