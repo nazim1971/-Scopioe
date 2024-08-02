@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
+import Body from "./Body";
+import Sidebar from "./Sidebar";
 
 
 const Home = () => {
     return (
-        <div>
-            This is home
-
-            <Link to='/viewPrivate'><button className="btn btn-secondary">
-                View private route
-            </button></Link> 
+        <div className="flex">
+          
+            <Sidebar/>
+            <Body/>
         </div>
     );
 };

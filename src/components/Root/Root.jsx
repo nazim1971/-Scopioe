@@ -1,12 +1,9 @@
 import { Outlet } from "react-router-dom";
-import Navber from "../Navber/Navber";
 
 const Root = () => {
     return (
-        <div >
-           {/* <Navber/> */}
+        <div className="max-w-[1440px] mx-auto ">
            <Outlet/>
-            
         </div>
     );
 };

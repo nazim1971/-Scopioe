@@ -1,98 +1,101 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import {  useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import toast from "react-hot-toast";
-import useAuth from "../Hook/useAuth";
-import RegisterS from "./Small/RegisterS";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../Hook/useAuth";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
-const Register = () => {
-  const { createUser, updateUserProfile } = useAuth();
-  // show password
-  const [pass, setPass] = useState(false);
-  const [rPass, setrPass] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setError,
-  } = useForm();
-  const onSubmit = (data) => {
-    const { email, password, name, photo, rePassword } = data;
-
-    // password validation
-    if (password.length < 6) {
-      setError("password", {
-        type: "manual",
-        message: "Password must be at least 6 characters long.",
-      });
-      return;
-    }
-    if (!/(?=.*[a-z])/.test(password)) {
-      setError("password", {
-        type: "manual",
-        message: "Password must have at least one lowercase letter.",
-      });
-      return;
-    }
-
-    if (!/(?=.*[A-Z])/.test(password)) {
-      setError("password", {
-        type: "manual",
-        message: "Password must have at least one uppercase letter.",
-      });
-      return;
-    }
-
-    if(password !== rePassword)  {
-      setError("rePassword", {
-        type: "manual",
-        message: "Password not match",
-      });
-      return;
-    }
-
-    // create user
-    createUser(email, password)
-      .then(() => {
-        toast.success("Account create Successfully");
-        // create user profile
-        updateUserProfile(name, photo).then(() => {
-          navigate(location?.state ? location.state : "/dashboard");
+const RegisterS = () => {
+     
+    const { createUser, updateUserProfile } = useAuth();
+    // show password
+    const [pass, setPass] = useState(false);
+    const [rPass, setrPass] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
+  
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      setError,
+    } = useForm();
+    const onSubmit = (data) => {
+      const { email, password, name, photo, rePassword } = data;
+  
+      // password validation
+      if (password.length < 6) {
+        setError("password", {
+          type: "manual",
+          message: "Password must be at least 6 characters long.",
         });
-      })
-      .catch((error) => {
-        if (error.code === "auth/email-already-in-use") {
-          toast.error("This Email Already Used");
-        } else {
-          toast.error("An error occurred");
-        }
-      });
-  };
+        return;
+      }
+      if (!/(?=.*[a-z])/.test(password)) {
+        setError("password", {
+          type: "manual",
+          message: "Password must have at least one lowercase letter.",
+        });
+        return;
+      }
+  
+      if (!/(?=.*[A-Z])/.test(password)) {
+        setError("password", {
+          type: "manual",
+          message: "Password must have at least one uppercase letter.",
+        });
+        return;
+      }
+  
+      if(password !== rePassword)  {
+        setError("rePassword", {
+          type: "manual",
+          message: "Password not match",
+        });
+        return;
+      }
+  
+      // create user
+      createUser(email, password)
+        .then(() => {
+          toast.success("Account create Successfully");
+          // create user profile
+          updateUserProfile(name, photo).then(() => {
+            navigate(location?.state ? location.state : "/dashboard");
+          });
+        })
+        .catch((error) => {
+          if (error.code === "auth/email-already-in-use") {
+            toast.error("This Email Already Used");
+          } else {
+            toast.error("An error occurred");
+          }
+        });
+    };
 
-  return (
-    <div className=" md:my-20 md:mx-9 mx-auto ">
-      <div className=" hidden md:grid grid-cols-2 items-center     mx-auto ">
 
-        <div className="w-[430px] mx-auto ">
-         <div className="space-y-2">
-         <h1 className="text-[40px] text-[#4285F3] ">LOGO</h1>
-          <h3 className="text-3xl font-semibold font-poppins">
-            Sign In To Your Account
-          </h3>
-          <p>
-            welcome Back! By click the sign up button, you're agree <br />
-            to Zenitood Terms and Service and acknowledge the <br />
-            <span className=" text-[#4285F3] underline ">Privacy and Policy</span>
-          </p>
-         </div>
+    return (
+        <div>
+             {/* for small device */}
+      <div
+          className=" w-full md:hidden h-screen bg-cover  bg-no-repeat  "
+          style={{
+            backgroundImage: "url(mLogin.png)",
+          }}
+        >
+          <div className="py-10 text-center">
+          <h1 className="text-[40px] text-[#4285F3] ">LOGO</h1>
+            <p className="text-lg font-semibold text-white ">Create Account</p>
+            <p className="text-white text-lg font-semibold">Fill in Your Information</p>
+          </div>
+
+          <div className=" px-4 bg-white h-full  py-10  rounded-t-[40px] ">
+         <h2 className="text-[28px] text-center font-semibold   ">Sign Up</h2>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mt-8">
-              <label className="block mb-2 text-sm font-medium ">Name</label>
+              <label className="block mb-2 text-sm font-medium  ">Name</label>
               <input
                 {...register("name", { required: true })}
                 className="block w-full px-4    border h-14 rounded-lg  focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
@@ -186,7 +189,7 @@ const Register = () => {
           </form>
 
           <div className="text-center mt-4">
-            <p>Already Have an Account? <Link
+            <p>Already Have an Account? <Link 
               to="/"
               className=" underline text-[#156BCA] "
             >
@@ -196,25 +199,9 @@ const Register = () => {
           </div>
 
         </div>
-
-        <div
-          className="hidden h-[800px] max-w-[648px] lg:flex lg:items-center lg:justify-center text-center bg-cover rounded-2xl bg-no-repeat m-4 "
-          style={{
-            backgroundImage: "url(login.png)",
-          }}
-        >
-          <div className="flex flex-col w-fit font-semibold text-[22px] rounded-[10px]   bg-[#152a16b2] p-[30px] ">
-            <p className=" text-[#156BCA] ">Create Account</p>
-            <p className="text-white">Fill in Your Information</p>
-          </div>
+        </div> 
         </div>
-      </div>
-
-      {/* for small device */}
-     <RegisterS/>
-
-    </div>
-  );
+    );
 };
 
-export default Register;
+export default RegisterS;

@@ -6,8 +6,6 @@ import About from "../components/Navber/About";
 import Login from "../components/SignIn/Login";
 import Register from "../components/SignIn/Register";
 import AddProduct from "../components/Navber/AddProduct";
-import ViewPrivate from "../components/Home/ViewPrivate";
-import Private from "../components/PrivateRoute/Private";
 
 const routes = createBrowserRouter([
     {
@@ -15,7 +13,7 @@ const routes = createBrowserRouter([
       element: <Root/>,
       children: [
         {
-          path: '/',
+          path: '/dashboard',
           element: <Home/>
         },
        {
@@ -27,7 +25,7 @@ const routes = createBrowserRouter([
         element: <About/>
        },
        {
-        path: '/login',
+        path: '/',
         element: <Login/>
        },
        {
@@ -38,10 +36,7 @@ const routes = createBrowserRouter([
         path: '/addProduct',
         element: <AddProduct/>
        },
-       {
-        path: '/viewPrivate',
-        element: <Private><ViewPrivate/></Private>
-       }
+       
       ]
     },
   ]);
