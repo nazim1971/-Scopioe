@@ -1,27 +1,23 @@
-import { useContext } from "react";
+
 import { Navigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../Provider/AuthProvider";
+import useAuth from "../Hook/useAuth";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpiner";
 
 
 
 const Private = ({children}) => {
     const location = useLocation();
-    const {user, loading} = useContext(AuthContext)
+    const {user, loading} = useAuth();
 
     if(loading){
-        return <div className="mx-auto">
-            <span className="loading loading-dots loading-xs"></span>
-<span className="loading loading-dots loading-sm"></span>
-<span className="loading loading-dots loading-md"></span>
-<span className="loading loading-dots loading-lg"></span>
-        </div>
+        return <LoadingSpinner/>
     }
     
     if(user){
         return children
     }
     return (
-       <Navigate state={location?.pathname || '/'} to='/login'></Navigate>
+       <Navigate state={location?.pathname || '/'} to='/'></Navigate>
     );
 };
 

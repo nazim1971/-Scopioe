@@ -62,7 +62,7 @@ if(user) return navigate('/dashboard')
           <div className=" max-w-[432px] mx-auto ">
              
           <div className="space-y-2">
-         <h1 className="text-[40px] text-[#4285F3] ">LOGO</h1>
+         <h1 className="text-[40px] font-serif text-[#4285F3] ">LOGO</h1>
           <h3 className="text-3xl font-semibold font-poppins">
           Log In To Your Account
           </h3>
@@ -72,7 +72,7 @@ if(user) return navigate('/dashboard')
          </div>
       
       <div className="mt-8 flex gap-6 justify-between">
-      <button onClick={handleGoogleLogin} href="#" className="flex items-center justify-center   transition-colors duration-300 transform border rounded-lg btn px-11  hover:bg-gray-50 ">
+      <button onClick={handleGoogleLogin} href="#" className="flex items-center justify-center bg-gradient-to-r from-[#E4E4E4] to-white  transition-colors duration-300 transform border rounded-lg btn px-11  hover:bg-gray-50 ">
                   <div className="">
                       <svg className="w-6 h-6" viewBox="0 0 40 40">
                           <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
@@ -82,7 +82,7 @@ if(user) return navigate('/dashboard')
                       </svg>
                   </div>
       
-                  <span className=" font-bold text-center">Google</span>
+                  <span className=" text-center">Google</span>
               </button>
         <button className="btn bg-[#298FFF] px-11 text-white " href="/">
         <FaFacebookF />
@@ -91,11 +91,11 @@ if(user) return navigate('/dashboard')
       </div>
             
               <div className="flex items-center text-[#5C635A] justify-between mt-8">
-                  <span className="w-1/5 border-b  lg:w-1/3"></span>
+                  <span className="w-1/5 border-b  lg:w-1/4"></span>
       
                   <a  className="text-sm text-center ">Or Continue with Email</a>
       
-                  <span className="w-1/5 border-b  lg:w-1/3"></span>
+                  <span className="w-1/5 border-b  lg:w-1/4"></span>
               </div>
       
               <form  onSubmit={handleSubmit(onSubmit)}>
@@ -149,7 +149,7 @@ if(user) return navigate('/dashboard')
       
               </div>
           </div>
-
+       {/* 2nd part */}
           <div
           className="hidden h-[800px] max-w-[648px] lg:flex lg:items-center lg:justify-center text-center bg-cover rounded-2xl bg-no-repeat m-4 "
           style={{

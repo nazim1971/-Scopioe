@@ -85,7 +85,7 @@ const RegisterS = () => {
           }}
         >
           <div className="py-10 text-center">
-          <h1 className="text-[40px] text-[#4285F3] ">LOGO</h1>
+          <h1 className="text-[40px] text-[#4285F3] font-serif ">LOGO</h1>
             <p className="text-lg font-semibold text-white ">Create Account</p>
             <p className="text-white text-lg font-semibold">Fill in Your Information</p>
           </div>

@@ -79,14 +79,14 @@ const Register = () => {
 
         <div className="w-[430px] mx-auto ">
          <div className="space-y-2">
-         <h1 className="text-[40px] text-[#4285F3] ">LOGO</h1>
+         <h1 className="text-[40px] font-serif text-[#4285F3] ">LOGO</h1>
           <h3 className="text-3xl font-semibold font-poppins">
             Sign In To Your Account
           </h3>
-          <p>
-            welcome Back! By click the sign up button, you're agree <br />
+          <p className=" text-[#5C635A] ">
+            elcome Back! By click the sign up button, you're agree <br />
             to Zenitood Terms and Service and acknowledge the <br />
-            <span className=" text-[#4285F3] underline ">Privacy and Policy</span>
+            <span className=" text-[#4285F3] underline "> Privacy and Policy</span>
           </p>
          </div>
 
@@ -172,7 +172,7 @@ const Register = () => {
                 <input
                 required
                  type="checkbox" />
-                <span className="text-[#4285F3] ">Accept Terms of Service</span>
+                <span className="text-[#4285F3] text-sm ">Accept Terms of Service</span>
               </div>
 
             <div className=" text-center mt-6">

@@ -1,7 +1,7 @@
 import { FaAngleDown } from "react-icons/fa";
 import useAuth from "../Hook/useAuth";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineAppstore } from "react-icons/ai";
@@ -50,7 +50,7 @@ const Nav = () => {
   }, [isOpen]);
   return (
     <div>
-      <div className="h-[88px] hidden  md:flex justify-between px-6 border bg-white ">
+      <div className="h-[88px] hidden w-full md:flex justify-between px-6 border bg-white ">
         <div className="flex gap-4 items-center ">
           <img
             className="h-10 w-10 rounded-full   "
@@ -80,7 +80,7 @@ const Nav = () => {
       </div>
       {/* small device */}
 
-      <div className="h-[60px] md:hidden bg-white flex justify-between items-center px-3 ">
+      <div className="h-[60px] md:hidden w-full bg-white flex justify-between items-center px-3 ">
         <h1 className="text-[32px]  text-center font-serif text-[#4285F3] ">LOGO</h1>
         <div className="flex gap-2">
           <IoNotificationsOutline className="text-2xl  " />
@@ -117,45 +117,31 @@ const Nav = () => {
           </p>
           <p className="text-xs"> {user?.email} </p>
         </div>
-
-        <div className="space-y-1 px-4  pt-5">
-          <Link to='/dashboard' className="flex items-center gap-3 text-[#5c635a]  py-3 ">
-            {" "}
-            <AiOutlineAppstore /> Home
-          </Link>
-          <p className="flex items-center gap-3 text-[#5c635a] py-3 ">
-            {" "}
-            <MdOutlinePeopleAlt /> New Listing
-          </p>
-          <p className="flex items-center gap-3 text-[#5c635a] py-3 ">
-            {" "}
-            <HiMagnifyingGlass /> Search
-          </p>
-          <p className="flex items-center gap-3 text-[#5c635a] py-3 ">
-            {" "}
-            <IoDocumentTextOutline /> About
-          </p>
-          <p className="flex items-center gap-3 text-[#5c635a] py-3 ">
-            {" "}
-            <CiHeart /> Favorites
-          </p>
-          <hr />
-          <p className="flex items-center gap-3 text-[#5c635a] py-3 ">
-            {" "}
-            <GrStatusInfo /> Help Center
-          </p>
-          <p className="flex items-center gap-3 text-[#5c635a] py-3 ">
-            {" "}
-            <CiSettings /> Setting
-          </p>
-          <p
+        {/* *************** ********** */}
+         <div className="space-y-1 ">
+       <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              `flex items-center gap-3 pl-4 text-[#5c635a] py-3 ${
+                isActive ? "bg-[#D4E9FF]" : "" }` }>
+            <CiSettings /> Settings
+          </NavLink>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 pl-4 "> <MdOutlinePeopleAlt /> New Listing</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 pl-4 "> <HiMagnifyingGlass /> Search</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 pl-4 "> <IoDocumentTextOutline /> About</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 pl-4 "> <CiHeart /> Favorites</p>
+        <hr /> 
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 pl-4 "> <GrStatusInfo /> Help Center</p>
+        <p className="flex items-center gap-3 text-[#5c635a] py-3 pl-4 "> <CiSettings />  Setting
+        </p>
+        <p
             onClick={handleSignOut}
             className="flex pl-4 hover:bg-red-100 hover:rounded-xl  justify-center pb-5  items-center gap-2"
           >
             <button className="font-medium text-[#F15E4A] "> Log Out</button>{" "}
             <img src="logout.png" alt="" />
           </p>
-        </div>
+       </div>
       </div>
     </div>
   );

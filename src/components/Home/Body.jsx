@@ -40,9 +40,11 @@ const Body = () => {
       }, [searchTerm, therapists]);
     
       const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-        console.log(e.target.value);
+        setSearchTerm(e.target.value.toLowerCase());
       };
+
+      const slidesPerView = Math.min(filteredTherapists.length, 4); // Adjust to your max slides per view
+      const spaceBetween = filteredTherapists.length === 1 ? 0 : 20;
 
     return (
         <div className="border w-full bg-[#EEF2F5]">
@@ -95,26 +97,23 @@ const Body = () => {
        <div className="bg-white max-w-[1130px] flex pt-5  h-[363px] px-4  m-6 rounded-[10px] ">
         
        <Swiper
-         slidesPerView={1}
-         spaceBetween={10}
-         pagination={{
-           clickable: true,
-         }}
+        slidesPerView={slidesPerView}
+        spaceBetween={spaceBetween}
+        pagination={filteredTherapists.length > 1 ? { clickable: true } : false}
         breakpoints={{
           640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
+            slidesPerView: Math.min(filteredTherapists.length, 2),
+            spaceBetween: spaceBetween,
           },
           768: {
-            slidesPerView: 3,
-            spaceBetween: 40,
+            slidesPerView: Math.min(filteredTherapists.length, 3),
+            spaceBetween: spaceBetween,
           },
           1024: {
-            slidesPerView: 4,
-            spaceBetween: 50,
+            slidesPerView: Math.min(filteredTherapists.length, 4),
+            spaceBetween: spaceBetween,
           },
         }}
-       
         modules={[Pagination]}
         className="mySwiper"
       >

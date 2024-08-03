@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaFacebookF, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-
 const LoginS = () => {
      
        
@@ -58,7 +57,7 @@ const handleGoogleLogin = () => {
           }}
         >
           <div className="py-10 text-center">
-          <h1 className="text-[40px] text-[#4285F3] ">LOGO</h1>
+          <h1 className="text-[40px] text-[#4285F3] font-serif ">LOGO</h1>
             <p className="text-lg font-semibold text-white ">Sign In to view all the </p>
             <p className="text-white text-lg font-semibold">massage therapists</p>
           </div>
@@ -72,7 +71,7 @@ const handleGoogleLogin = () => {
          </div>
 
          <div className="pt-8 flex justify-between">
-         <button onClick={handleGoogleLogin} href="#" className="flex items-center justify-center   transition-colors duration-300 transform border rounded-lg btn px-11  hover:bg-gray-50 ">
+         <button onClick={handleGoogleLogin} href="#" className="flex items-center justify-center bg-gradient-to-r from-[#E4E4E4] to-white  transition-colors duration-300 transform border rounded-lg btn px-11  hover:bg-gray-50 ">
                      <div className="">
                          <svg className="w-6 h-6" viewBox="0 0 40 40">
                              <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
@@ -91,11 +90,11 @@ const handleGoogleLogin = () => {
          </div>
                
                  <div className="flex items-center text-[#5C635A] justify-between mt-8">
-                     <span className="w-1/5 border-b  lg:w-1/3"></span>
+                     <span className="w-1/5 border-b  lg:w-1/4"></span>
          
                      <a  className="text-sm text-center ">Or Continue with Email</a>
          
-                     <span className="w-1/5 border-b  lg:w-1/3"></span>
+                     <span className="w-1/5 border-b  lg:w-1/4"></span>
                  </div>
          
                  <form  onSubmit={handleSubmit(onSubmit)}>
@@ -137,7 +136,7 @@ const handleGoogleLogin = () => {
                  </div>
          
                  <div className="mt-6 text-center">
-                     <button type="submit" className=" btn btn-wide  btn-primary px-6 py-3 text-sm font-medium tracking-wide  capitalize transition-colors duration-300 transform  rounded-lg  focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                     <button type="submit" className=" btn btn-wide bg-[#156BCA] text-white px-6 py-3 text-sm font-medium tracking-wide  capitalize transition-colors duration-300 transform  rounded-lg  focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                          Sign In
                      </button>
                  </div>
