@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className=" hidden md:block">
+    <div className=" hidden lg:block">
       
         
       <div className="w-[250px] h-full border ">

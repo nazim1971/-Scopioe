@@ -20,6 +20,7 @@ const Body = () => {
     const [therapists, setTherapists] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
   const [filteredTherapists, setFilteredTherapists] = useState([]);
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
       useEffect(() => {
         fetch('therapist.json')
@@ -39,32 +40,58 @@ const Body = () => {
         setFilteredTherapists(filtered);
       }, [searchTerm, therapists]);
     
-      const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value.toLowerCase());
+
+      const getSlidesPerView = () => {
+        const numItems = filteredTherapists.length;
+        if (window.innerWidth >= 1024) {
+          return Math.min(numItems, 4); // Max 4 slides for large screens
+        } else if (window.innerWidth >= 768) {
+          return Math.min(numItems, 3); // Max 3 slides for medium screens
+        } else if (window.innerWidth >= 640) {
+          return Math.min(numItems, 2); // Max 2 slides for small screens
+        } else {
+          return Math.min(numItems, 1); // Default to 1 slide for extra small screens
+        }
       };
+      const handleSwiperInit = (swiper) => {
+        setSwiperInstance(swiper);
+      };
+    
+      const updateSwiperSlidesPerView = () => {
+        if (swiperInstance) {
+          swiperInstance.params.slidesPerView = getSlidesPerView();
+          swiperInstance.update();
+        }
+      };
+    
+      useEffect(() => {
+        updateSwiperSlidesPerView();
+        window.addEventListener('resize', updateSwiperSlidesPerView);
+        return () => {
+          window.removeEventListener('resize', updateSwiperSlidesPerView);
+        };
+      }, [filteredTherapists, swiperInstance]);
 
-      const slidesPerView = Math.min(filteredTherapists.length, 4); // Adjust to your max slides per view
-      const spaceBetween = filteredTherapists.length === 1 ? 0 : 20;
-
+      
     return (
         <div className="border w-full bg-[#EEF2F5]">
          <Nav/>
 
         <div className="bg-white max-w-[1130px] min-h-[430px]  md:min-h-[210px] p-5 my-4 md:m-6 rounded-[10px] grid md:grid-cols-2 gap-10">
 
-        <div className="flex flex-col justify-between p-2 ">
+        <div className="flex flex-col md:space-y-2 justify-between p-2 ">
             <h2 className="text-lg font-medium">
             I'm Looking for Massage Therapist Near... 
             </h2>
             <p> 
             In using this site, I agree to be bound by the <span className="text-[#156BCA] underline ">Terms of Service </span>
-             <br className="hidden md:inline" />
+             <br className="hidden lg:inline" />
               and  <span className="text-[#156BCA] underline ">Privacy Policy</span>
             </p>
             <div className="relative hidden md:block">
             <input type="text"
              value={searchTerm}
-             onChange={handleSearchChange}
+             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full border pl-4 rounded-lg h-[50px] bg-[#EEF2F5]  "
             placeholder="ZIP code or city name"
             />
@@ -80,7 +107,7 @@ const Body = () => {
          <div className="relative md:hidden block">
             <input type="text"
              value={searchTerm}
-             onChange={handleSearchChange}
+             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full border pl-4 rounded-lg h-[50px] bg-[#EEF2F5]  "
             placeholder="ZIP code or city name"
             />
@@ -97,29 +124,18 @@ const Body = () => {
        <div className="bg-white max-w-[1130px] flex pt-5  h-[363px] px-4  m-6 rounded-[10px] ">
         
        <Swiper
-        slidesPerView={slidesPerView}
-        spaceBetween={spaceBetween}
-        pagination={filteredTherapists.length > 1 ? { clickable: true } : false}
-        breakpoints={{
-          640: {
-            slidesPerView: Math.min(filteredTherapists.length, 2),
-            spaceBetween: spaceBetween,
-          },
-          768: {
-            slidesPerView: Math.min(filteredTherapists.length, 3),
-            spaceBetween: spaceBetween,
-          },
-          1024: {
-            slidesPerView: Math.min(filteredTherapists.length, 4),
-            spaceBetween: spaceBetween,
-          },
-        }}
+        onInit={handleSwiperInit}
+        slidesPerView={getSlidesPerView()} // Set initial slidesPerView
+        spaceBetween={50} // Default space between slides
+        pagination={{ clickable: true }}
+        observer={true}
+        observeParents={true}
         modules={[Pagination]}
         className="mySwiper"
       >
         {filteredTherapists.map((therapist, index) =>(
          <SwiperSlide key={index}>
-         <div  className=" relative h-[303px] min-w-[177px] mx-auto md:w-[214px] rounded-[10px] border">
+         <div  className=" relative h-[303px] mx-auto w-[214px] rounded-[10px] border">
            <img src={therapist.picture} className="h-[146px] w-full p-2" alt={`${therapist.name}'s picture`} />
           <div className="px-4 space-y-2">
           <h3 className="text-sm font-medium">{therapist.name}</h3>
@@ -134,46 +150,6 @@ const Body = () => {
       </Swiper>
       
         </div>
-
-{/* <Swiper
-       slidesPerView={1}
-       spaceBetween={10}
-       pagination={{
-         clickable: true,
-       }}
-       breakpoints={{
-         640: {
-           slidesPerView: 2,
-           spaceBetween: 20,
-         },
-         768: {
-           slidesPerView: 3,
-           spaceBetween: 40,
-         },
-         1024: {
-           slidesPerView: 4,
-           spaceBetween: 50,
-         },
-       }}
-       modules={[Pagination]}
-       className="mySwiper"
-       
-      >
-      {therapists.map((therapist, index) =>(
-         <SwiperSlide key={index}>
-         <div  className=" relative h-[303px] min-w-[177px] md:w-[214px] rounded-[10px] border">
-           <img src={therapist.picture} className="h-[146px] w-full p-2" alt={`${therapist.name}'s picture`} />
-          <div className="px-4 space-y-2">
-          <h3 className="text-sm font-medium">{therapist.name}</h3>
-           <p className="text-[13px] text-[#5C635A] flex items-center gap-2"> <FaLocationDot />  {therapist.location}</p>
-           <p className="text-[13px] text-[#5C635A] flex items-center gap-2"> <FaCar /> {therapist.occupation}</p>
-          </div>
-          <p className="text-sm absolute w-full text-center bottom-0 h-11 flex items-center justify-center underline rounded-b-[10px]  bg-[#D4E9FF] ">
-           See Details
-           </p>
-         </div>
-         </SwiperSlide> ))}
-      </Swiper> */}
 
        <div className="grid md:grid-cols-2">
         {/* 1st one  */}

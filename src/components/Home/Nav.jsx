@@ -1,10 +1,9 @@
 import { FaAngleDown } from "react-icons/fa";
 import useAuth from "../Hook/useAuth";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
-import { AiOutlineAppstore } from "react-icons/ai";
 import { CiHeart, CiSettings } from "react-icons/ci";
 import { GrStatusInfo } from "react-icons/gr";
 import { HiMagnifyingGlass } from "react-icons/hi2";
@@ -50,7 +49,7 @@ const Nav = () => {
   }, [isOpen]);
   return (
     <div>
-      <div className="h-[88px] hidden w-full md:flex justify-between px-6 border bg-white ">
+      <div className="h-[88px] hidden w-full lg:flex justify-between px-6 border bg-white ">
         <div className="flex gap-4 items-center ">
           <img
             className="h-10 w-10 rounded-full   "
@@ -80,7 +79,7 @@ const Nav = () => {
       </div>
       {/* small device */}
 
-      <div className="h-[60px] md:hidden w-full bg-white flex justify-between items-center px-3 ">
+      <div className="h-[60px] lg:hidden w-full bg-white flex justify-between items-center px-3 ">
         <h1 className="text-[32px]  text-center font-serif text-[#4285F3] ">LOGO</h1>
         <div className="flex gap-2">
           <IoNotificationsOutline className="text-2xl  " />
