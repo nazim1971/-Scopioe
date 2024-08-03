@@ -14,7 +14,7 @@ A dynamic web application to search for therapists by location and login using G
 
 ## Live Link
 
-[Dynamic Therapist App](https://your-live-link.com)
+[Dynamic Therapist App](https://scopioe-87a37.web.app/)
 
 ## Features
 
