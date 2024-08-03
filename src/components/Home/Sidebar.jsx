@@ -11,7 +11,7 @@ const Sidebar = () => {
       
         
       <div className="w-[250px] h-full border ">
-      <h1 className="text-[40px] my-6 text-center text-[#4285F3] ">LOGO</h1>
+      <h1 className="text-[40px] my-6 text-center font-serif text-[#4285F3] ">LOGO</h1>
 
        <div className="space-y-1 px-4">
        <p className="flex items-center gap-3 text-[#5c635a]  py-3 "> <AiOutlineAppstore /> Home</p>

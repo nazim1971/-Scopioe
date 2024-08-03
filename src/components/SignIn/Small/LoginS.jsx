@@ -9,7 +9,7 @@ import { FaFacebookF, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 const LoginS = () => {
      
        
-  const { login ,googleLogin} = useAuth();
+  const { login ,googleLogin, user} = useAuth();
   
   // show password
   const [pass, setPass] = useState(false);
@@ -46,7 +46,8 @@ const handleGoogleLogin = () => {
       navigate(location?.state ? location.state : "/dashboard");
     })
     .catch();
-};
+}; 
+   if(user) return navigate('/dashboard')
 
     return (
         <div>

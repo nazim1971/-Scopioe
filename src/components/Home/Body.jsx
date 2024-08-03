@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 // import required modules
-import {  Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 
 
 
@@ -18,16 +18,31 @@ import {  Pagination } from 'swiper/modules';
 const Body = () => {
 
     const [therapists, setTherapists] = useState([]);
-    
-     
-    useEffect(() => {
+    const [searchTerm, setSearchTerm] = useState('');
+  const [filteredTherapists, setFilteredTherapists] = useState([]);
+
+      useEffect(() => {
         fetch('therapist.json')
           .then((response) => response.json())
-          .then((data) => setTherapists(data))
+          .then((data) => {
+            setTherapists(data);
+            setFilteredTherapists(data); // Initially set the filtered list to the full list
+          })
           .catch((error) => console.error('Error fetching the JSON file:', error));
       }, []);
-
-   
+    
+      useEffect(() => {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        const filtered = therapists.filter((therapist) =>
+          therapist.location.toLowerCase().includes(lowerCaseSearchTerm) 
+        );
+        setFilteredTherapists(filtered);
+      }, [searchTerm, therapists]);
+    
+      const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        console.log(e.target.value);
+      };
 
     return (
         <div className="border w-full bg-[#EEF2F5]">
@@ -46,6 +61,8 @@ const Body = () => {
             </p>
             <div className="relative hidden md:block">
             <input type="text"
+             value={searchTerm}
+             onChange={handleSearchChange}
             className="w-full border pl-4 rounded-lg h-[50px] bg-[#EEF2F5]  "
             placeholder="ZIP code or city name"
             />
@@ -60,6 +77,8 @@ const Body = () => {
          </div>
          <div className="relative md:hidden block">
             <input type="text"
+             value={searchTerm}
+             onChange={handleSearchChange}
             className="w-full border pl-4 rounded-lg h-[50px] bg-[#EEF2F5]  "
             placeholder="ZIP code or city name"
             />
@@ -73,10 +92,51 @@ const Body = () => {
 
        <h2 className="font-medium text-lg ml-6">Featured Therapist</h2>
 
-       {/* <div className="bg-white flex items-center justify-between h-[363px] px-4  m-6 rounded-[10px] ">
+       <div className="bg-white max-w-[1130px] flex pt-5  h-[363px] px-4  m-6 rounded-[10px] ">
         
+       <Swiper
+         slidesPerView={1}
+         spaceBetween={10}
+         pagination={{
+           clickable: true,
+         }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 50,
+          },
+        }}
        
-         <Swiper
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        {filteredTherapists.map((therapist, index) =>(
+         <SwiperSlide key={index}>
+         <div  className=" relative h-[303px] min-w-[177px] mx-auto md:w-[214px] rounded-[10px] border">
+           <img src={therapist.picture} className="h-[146px] w-full p-2" alt={`${therapist.name}'s picture`} />
+          <div className="px-4 space-y-2">
+          <h3 className="text-sm font-medium">{therapist.name}</h3>
+           <p className="text-[13px] text-[#5C635A] flex items-center gap-2"> <FaLocationDot />  {therapist.location}</p>
+           <p className="text-[13px] text-[#5C635A] flex items-center gap-2"> <FaCar /> {therapist.occupation}</p>
+          </div>
+          <p className="text-sm absolute w-full text-center bottom-0 h-11 flex items-center justify-center underline rounded-b-[10px]  bg-[#D4E9FF] ">
+           See Details
+           </p>
+         </div>
+         </SwiperSlide> ))}
+      </Swiper>
+      
+        </div>
+
+{/* <Swiper
        slidesPerView={1}
        spaceBetween={10}
        pagination={{
@@ -114,10 +174,8 @@ const Body = () => {
            </p>
          </div>
          </SwiperSlide> ))}
-      </Swiper>
-        </div> */}
+      </Swiper> */}
 
-        
        <div className="grid md:grid-cols-2">
         {/* 1st one  */}
         

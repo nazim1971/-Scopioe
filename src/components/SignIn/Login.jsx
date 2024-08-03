@@ -13,7 +13,7 @@ const Login = () => {
 
 
    
-  const { login ,googleLogin} = useAuth();
+  const { login ,googleLogin, user} = useAuth();
   
   // show password
   const [pass, setPass] = useState(false);
@@ -51,7 +51,7 @@ const handleGoogleLogin = () => {
     })
     .catch();
 };
-
+if(user) return navigate('/dashboard')
 
     return (
       <div className="md:my-20 md:mx-8  mx-auto">

@@ -7,7 +7,7 @@ import useAuth from "../Hook/useAuth";
 import RegisterS from "./Small/RegisterS";
 
 const Register = () => {
-  const { createUser, updateUserProfile } = useAuth();
+  const { createUser, updateUserProfile, user } = useAuth();
   // show password
   const [pass, setPass] = useState(false);
   const [rPass, setrPass] = useState(false);
@@ -72,7 +72,7 @@ const Register = () => {
         }
       });
   };
-
+  if(user) return navigate('/dashboard')
   return (
     <div className=" md:my-20 md:mx-9 mx-auto ">
       <div className=" hidden md:grid grid-cols-2 items-center     mx-auto ">

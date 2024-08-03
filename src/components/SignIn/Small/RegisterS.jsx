@@ -8,7 +8,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
 const RegisterS = () => {
      
-    const { createUser, updateUserProfile } = useAuth();
+    const { createUser, updateUserProfile, user } = useAuth();
     // show password
     const [pass, setPass] = useState(false);
     const [rPass, setrPass] = useState(false);
@@ -73,7 +73,7 @@ const RegisterS = () => {
           }
         });
     };
-
+    if(user) return navigate('/dashboard')
 
     return (
         <div>
